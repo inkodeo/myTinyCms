@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crop id="" number="1">
+
+    <topic>root crop page</topic>
+    <scope>main entry of the web site</scope>
+    <fields count="4">
+        
+        <field number="0" id="dummy">
+            <subject/>
+            <content/>
+        </field>
+        
+        <field number="1" id="rootEntry">
+            <subject>rootEntry</subject>
+            <content>&lt;div id='data:1|2|contentEntry'&gt;&lt;/div&gt;</content>
+        </field>
+        
+    <field id="contentEntry" number="2"><subject>contentEntry</subject><content>&lt;style&gt;
+.middle{
+  align:center;
+  float:25%;
+}
+body{
+  background-image: url("http://inkodeo.be/zil0b/object/background_feu.png");
+  background-size:100%;
+  background-repeat:no-repeat;
+}
+.intro_2{
+  background-image: url("http://inkodeo.be/zil0b/object/intro_2.jpg");
+}
+.topic { text-align:left; color:#fff;font-weight:bold;}
+.topic h2 {
+  font-size: 1.571em;
+  font-weight: normal;
+}
+&lt;/style&gt;
+
+&lt;div class="ctcFrame"&gt;
+&lt;div class="middle"&gt;
+&lt;table align="center" border="0"&gt;
+&lt;tr&gt;&lt;td colspan="3" height="356" class="intro_2" valign="bottom"&gt;
+&lt;table class="topic"&gt;
+  &lt;tr&gt;&lt;td rowspan="2"&gt;&lt;h1&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;img src="http://inkodeo.be/zil0b/object/inkodeo.jpeg"/&gt;&lt;/h1&gt;&lt;/td&gt;&lt;td rowspan="2"/&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td rowspan="0"/&gt;&lt;td rowspan="0"&gt;&lt;h2&gt;Conception numérique tablette/desktop ...&lt;br&gt;aide à développer vos expériences multimédia.&lt;/h2&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td colspan="3"&gt;
+
+&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td&gt;&lt;div&gt;&lt;h3&gt;Respect&lt;/h3&gt;&lt;/div&gt;
+
+&lt;iframe width="306" height="163" src="https://www.youtube.com/embed/sJcarHu2TZw" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;/td&gt;&lt;td&gt;&lt;div&gt;&lt;h3&gt;Recommandation : Dungeon M&lt;/h3&gt;&lt;/div&gt;
+&lt;a target="_blank" href="http://www.abandonware-france.org/ltf_abandon/ltf_jeu.php?id=285"&gt;&lt;img src="http://inkodeo.be/zil0b/object/dm_01.jpg" height="163" width="306"/&gt;&lt;/a&gt;
+
+&lt;/td&gt;&lt;td&gt;&lt;div&gt;&lt;h3&gt;Programmations&lt;/h3&gt;&lt;/div&gt;
+&lt;a target="_blank" href="https://github.com/crealink/myTinyCMS"&gt;&lt;img src="http://inkodeo.be/zil0b/object/image_2.png" height="163" width="306"/&gt;&lt;/a&gt;
+
+&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td valign="top"&gt;&lt;h3&gt;TL9&lt;/h3&gt;&lt;a href="http://inkodeo.be/zil0b/object/TL9_EP1.pdf"&gt;&lt;img width="306"  height="163" src="http://inkodeo.be/zil0b/object/TL9_thumbs.png" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;td&gt;
+&lt;h3&gt;Cool msc&lt;/h3&gt;
+&lt;iframe width="306" height="163" src="https://www.youtube.com/embed/qGcccvQoeZk?list=PLcxNYVD6OKViIlKASeHmHmb2B_rZIYEgX" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;/td&gt;&lt;td&gt;
+
+&lt;h3&gt;Percussion&lt;/h3&gt;
+&lt;iframe width="306" height="163" src="https://www.youtube.com/embed/FeKGq2c_X9I" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td colspan="3"&gt;&lt;iframe width="100%" height="800" src="http://inkodeo.be/+ADM/_ARC_/CURRI.swf" /&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td height="100%" /&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div align="center" style="position:fixed;bottom:0;left:0;padding:5px;background-color:#000;color:#aaa;width:100%;"&gt;Copyright Gianluigi Beuzard - Sofam 2015&lt;/div&gt;</content></field><field id="languageEntry" number="3"><subject>languageEntry</subject><content>
+&lt;pre id="content"&gt;
+
+--&gt; Gianluigi Beuzard
+
+VBA, C/C++, PHP, Cobol, HTML, JS, Java, AS3, Basic, C#, XML --&gt; "Algorythmique"
+
+&lt;/pre&gt;</content></field><field id="cai" number="4"><subject>cai</subject><content>Caisson de sauvetage individuel de la dernière chance. (4LostInSpaceTravel:)
+&lt;br/&gt;
+&lt;br/&gt;contact : zil0b@inkodeo.be
+&lt;br/&gt;
+&lt;br/&gt;-&gt; Il est toujours utile d'avoir dans son grenier un caisson de sauvetage. Pourquoi pas à la cave? Car il pourrait-être enseveli. &lt;br/&gt;En tous les cas, bonne chance en cas de tornades, quelques personnes sont survécues dans une cave à bière.
+&lt;br/&gt;
+
+&lt;div&gt;&lt;img src="http://inkodeo.be/zil0b/object/cave_a_biere.png"/&gt;&lt;/br&gt;
+
+&lt;h1&gt;&lt;a href="http://inkodeo.be/zil0b/object/TL9_EP1.pdf"&gt;caisson autonome individuel&lt;/a&gt;&lt;/h1&gt;
+Le modèle suivant est plus rablé et pour une personne unique. Ses deux bandes latérales permettent à la lumière du ciel de procéder à l'élévation et projection dans l'espace. Il est donc nécessaire que le module soit parfaitement étanche. Les magnets sont à manipuler suivant la connaissance de l'art comme des chenillards electromagnétiques générant des courants de gravitons sur les flancs. 
+
+&lt;h2&gt;Le hublot est la partie qui doit provenir directement d'un centre aérospatial ou il faudra s'en passer et trouver le moyen de générer l'image par champs électromagnétiques via les mangets ensevelis dans les bandes.&lt;/h2&gt;
+
+&lt;/div&gt;</content></field></fields>
+
+</crop>

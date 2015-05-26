@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- users dataChunk model -->
+<!-- 
+
+    passwords may be crypted with md5
+
+-->
+<!-- u:usr / m:mod / a:adm -->
+<users id="" number="" links="">
+    
+    <user login="adminNulNeDitQuIlEstFacileDeBienAgir" pass="adminNulNeDitQuIlEstFacileDeBienAgir" lastname="gianluigi" forname="beuzard" customer="gl1" right="a|m|u" key="6d9d4b3d02959b3e629916bab215d4bc"/>
+</users>

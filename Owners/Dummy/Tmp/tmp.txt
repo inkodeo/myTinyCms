@@ -1,0 +1,24 @@
+
+			foreach($fields as $v)
+				if($v->nodeType != XML_TEXT_NODE)
+					if($v->nodeName != "fields")
+						{
+							$tab[$v->nodeName]["data"] = utf8_decode($v->nodeValue) ;
+						}
+					else
+						{
+							$tab["fields"] = array() ;
+							foreach($v->childNodes as $u )
+								{
+									if($u->nodeType != XML_TEXT_NODE)
+									{
+										$tmp = array() ;
+										foreach($u->childNodes as $w)
+										{
+											array_push($tmp, $u->nodeValue) ;
+										}
+										array_push($tab["fields"],$tmp) ; 
+									}
+								}
+						}
+			

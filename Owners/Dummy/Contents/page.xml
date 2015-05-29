@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pages count="4">
     <page number="1" id="standard" entry="data:1|1|rootEntry"/>
-<page number="2" id="cai" entry="data:1|4|cai"/></pages>
+<page number="2" id="cai" entry="data:1|4|cai"/><page number="3" id="test" entry="data:2|3|pageTest"/><page number="4" id="todo" entry="data:4|1|todo"/></pages>

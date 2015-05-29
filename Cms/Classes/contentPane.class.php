@@ -1,24 +1,22 @@
-<?php 
+<?php
 
-	class contentPane
-	/*
-	 * this class contains the mod menu treats
-	 */
-		{
-			public $data ;
-			
-			public function setFeed()
-			/*
-			 * only letters and numbers can be placed in data feed name data["abc.."]
-			 */
-				{
+class contentPane
+/*
+ * this class contains the mod menu treats
+ */ {
 
-					$this->data["menuPane"] =  '
-					
-				         <div class="panel">
+    public $data;
+
+    public function setFeed()
+    /*
+     * only letters and numbers can be placed in data feed name data["abc.."]
+     */ {
+
+        $this->data["menuPane"] = '
+			    <div class="panel">
 				         
-	                        <span onclick="showHide($(\'cMenu\'),1);collapse(this);" class="click">[+]</span>
-	                        <span id="cMenu" class="click">  <a href="'.$_SERVER['PHP_SELF'].'?entry='.(@$_REQUEST["entry"]?$_REQUEST["entry"]:'Dummy').'&crop=1">!.crop</a> | <a href="'.$_SERVER['PHP_SELF'].'?entry='.(@$_REQUEST["entry"]?$_REQUEST["entry"]:'Dummy').'&page=1">!.page</a>
+	                        <span onclick="collapse(this);showHide($(\'cMenu\'),1);" class="click">[_]</span>
+	                        <span id="cMenu" class="click">  <a href="' . $_SERVER['PHP_SELF'] . '?entry=' . (@$_REQUEST["entry"] ? $_REQUEST["entry"] : 'Dummy') . '&crop=1">!.crop</a> | <a href="' . $_SERVER['PHP_SELF'] . '?entry=' . (@$_REQUEST["entry"] ? $_REQUEST["entry"] : 'Dummy') . '&page=1">!.page</a>
 	                            <p />
 	                            
 	                            	<form action="" method="post" name="form1">
@@ -35,14 +33,10 @@
 		                    	{{objectPane}}
 								
 	                        </span>
-	                        
-	                    </div>
-	                    
-						' ;
-					
-					$this->data["loginPane"] = '
-					
-						<span onclick="showHide($(\'loginPane\'),2);">:: Login Pane ::</span>
+	                    </div>';
+
+        $this->data["loginPane"] = '
+			<span onclick="showHide($(\'loginPane\'),2);">:: Login Pane ::</span>
 	                   <span>
 		                   <div>
 	                          	
@@ -50,110 +44,93 @@
 	                            	<input id="iButton" type="submit" value="log on"  style="width:100%;" />
 	                            
 	                       </div>
-                       </span>
-                       ' ;
-					
-				}
-			
-			public function setTagFeed($pTag,$pFeed)
-				{
-					$this->data[$pTag] = $pFeed ;
-				}
-			
-			public function contentPane()
-				{
-						$this->init(); 
-				}
-			
-			public function placePane()
-				{
-					preg_match_all('/{{[a-z0-9A-Z]*}}/',$this->data["menuPane"],$matches) ;
+                        </span>
+                       ';
+    }
 
-					foreach($matches[0] as $v)
-						{
-							$v = str_replace(array('{','[','}',']'),array('',' ','',''),$v);
-							if(!$this->special($v))
-								{
-									$this->data["menuPane"] = preg_replace('/{{'.$v.'}}/',@$this->data[$v],$this->data["menuPane"])	;
-								}
-						}
-				}
-			
-			public function special($pTag)
-				{
-				
-				return false ;
-				}
-				
-			public function tagReserved()
-				{
-					switch (true)
-						{
-							case (isset( $_SESSION["autho"]['credit'])) :
-								$this->data["loginPane"] = "<div>
-									<br/>
-									<input type='submit' value='unlog' name='iUnlog' style='width:96%;' />
-								</div>" ;
-								
-								# CROP PANE
-								
-								// set the crop list
-								$tmp = getFileList($_SESSION["path"] . "/Contents") ;
-								
-								$this->data["cropPane"] = "<p/><div class='dark' onclick='showHide($(\"cCropPane\"),1)' style='cursor:pointer;'>:: Crop pane ::</div><p/><div id='cCropPane'>" ;
-								foreach($tmp as $v)
-									{
-										$this->data["cropPane"] .= '<a href="
-											' . ($_SERVER["PHP_SELF"]) . '?entry=' . @$_REQUEST["entry"] . '&crop=' . $v . '">' . substr($v,8,((int)strlen($v))-8) . '</a><br />' ;
-									}
-								$this->data["cropPane"] .= "</div>" ;
-								
-								# USER PANE
-								$this->data["userPane"] = "<p/><a href='".$_SERVER['PHP_SELF']."?entry=".$_REQUEST['entry']."&user=1'>[ users ]</a> ";
-								
-								# PAGE PANE
-								$this->data["pagePane"] = "<a href='".$_SERVER['PHP_SELF']."?entry=".$_REQUEST['entry']."&page=1'>[ pages ]</a>";
-								
-								# TEMPLATE PANE
-								// set the template list
-								$tmp = getFileList($_SESSION["path"] . "/Templates") ;
-								$this->data["templatePane"] = "<p/><div class='dark' onclick='showHide($(\"cTemplatePane\"),1)' style='cursor:pointer;'>:: Template pane ::</div><p/><div id='cTemplatePane'>" ;
-								foreach($tmp as $v)
-									{
-										$this->data["templatePane"] .= '<a href="
-										' . ($_SERVER["PHP_SELF"]) . '?entry=' . @$_REQUEST["entry"] . '&template=' . $v . '">' . substr($v,8,((int)strlen($v))-8) . '</a><br />' ;
-									}
-								$this->data["templatePane"] .= "</div>" ;
-								
-								# OBJECT PANE
-								// set the template list
-								$tmp = getObjectsList($_SESSION["path"] . "/Objects") ;
-								$this->data["objectPane"] = "<p/><div class='dark' onclick='showHide($(\"cObjectPane\"),1)' style='cursor:pointer;'>:: Object pane ::</div><p/>
-								<a href='".($_SERVER["PHP_SELF"]) . '?entry=' . @$_REQUEST["entry"] . "&object=1'>upload</a><p/>
-								<div id='cObjectPane'>" ;
-								
-								if(count($tmp)>0)
-									foreach($tmp as $v)
-										{
-											$this->data["objectPane"] .= substr($v,8,((int)strlen($v))-8) . '<br />' ;
-										}
-								
-								$this->data["objectPane"] .= "</div>" ;
-								
-								break ;
-						}
-				}
-			
-			public function getObjectPane()
-				{
-					
-					return "<div class='bottomTool' style=''>
+    public function setTagFeed($pTag, $pFeed) {
+        $this->data[$pTag] = $pFeed;
+    }
+
+    public function contentPane() {
+        $this->init();
+    }
+
+    public function placePane() {
+        preg_match_all('/{{[a-z0-9A-Z]*}}/', $this->data["menuPane"], $matches);
+
+        foreach ($matches[0] as $v) {
+            $v = str_replace(array('{', '[', '}', ']'), array('', ' ', '', ''), $v);
+            if (!$this->special($v)) {
+                $this->data["menuPane"] = preg_replace('/{{' . $v . '}}/', @$this->data[$v], $this->data["menuPane"]);
+            }
+        }
+    }
+
+    public function special($pTag) {
+
+        return false;
+    }
+
+    public function tagReserved() {
+        switch (true) {
+            case (isset($_SESSION["autho"]['credit'])) :
+                $this->data["loginPane"] = "<div><br/><input type='submit' value='unlog' name='iUnlog' style='width:96%;' /></div>";
+
+                # CROP PANE
+                // set the crop list
+                $tmp = getFileList($_SESSION["path"] . "/Contents");
+
+                $this->data["cropPane"] = "<p/><div class='dark' onclick='showHide($(\"cCropPane\"),1)' style='cursor:pointer;'>:: Crop pane ::</div><p/><div id='cCropPane'>";
+                foreach ($tmp as $v) {
+                    $this->data["cropPane"] .= '<a href="
+											' . ($_SERVER["PHP_SELF"]) . '?entry=' . @$_REQUEST["entry"] . '&crop=' . $v . '">' . substr($v, 8, ((int) strlen($v)) - 8) . '</a><br />';
+                }
+                $this->data["cropPane"] .= "</div>";
+
+                # USER PANE
+                $this->data["userPane"] = "<p/><a href='" . $_SERVER['PHP_SELF'] . "?entry=" . $_REQUEST['entry'] . "&user=1'>[ users ]</a> ";
+
+                # PAGE PANE
+                $this->data["pagePane"] = "<a href='" . $_SERVER['PHP_SELF'] . "?entry=" . $_REQUEST['entry'] . "&page=1'>[ pages ]</a>";
+
+                # TEMPLATE PANE
+                // set the template list
+                $tmp = getFileList($_SESSION["path"] . "/Templates");
+                $this->data["templatePane"] = "<p/><div class='dark' onclick='showHide($(\"cTemplatePane\"),1)' style='cursor:pointer;'>:: Template pane ::</div><p/><div id='cTemplatePane'>";
+                foreach ($tmp as $v) {
+                    $this->data["templatePane"] .= '<a href="
+										' . ($_SERVER["PHP_SELF"]) . '?entry=' . @$_REQUEST["entry"] . '&template=' . $v . '">' . substr($v, 8, ((int) strlen($v)) - 8) . '</a><br />';
+                }
+                $this->data["templatePane"] .= "</div>";
+
+                # OBJECT PANE
+                // set the template list
+                $tmp = getObjectsList($_SESSION["path"] . "/Objects");
+                $this->data["objectPane"] = "<p/><div class='dark' onclick='showHide($(\"cObjectPane\"),1)' style='cursor:pointer;'>:: Object pane ::</div><p/>
+								<a href='" . ($_SERVER["PHP_SELF"]) . '?entry=' . @$_REQUEST["entry"] . "&object=1'>upload</a><p/>
+								<div id='cObjectPane'>";
+
+                if (!empty($tmp))
+                    foreach ($tmp as $v) {
+                        $this->data["objectPane"] .= substr($v, 8, ((int) strlen($v)) - 8) . '<br />';
+                    }
+
+                $this->data["objectPane"] .= "</div>";
+
+                break;
+        }
+    }
+
+    public function getObjectPane() {
+
+        return "<div class='bottomTool' style=''>
 					
 						<div onclick='showHide($(\"cObjectPanel\"));collapse(this);' class='click'>[_]</div>
 						<div id='cObjectPanel'>
 							
 							<form method='POST' action='' enctype='multipart/form-data'>
-								 <!-- On limite le fichier à 100Ko -->
+								 <!-- On limite le fichier ï¿½ 100Ko -->
 								 <input type='hidden' name='MAX_FILE_SIZE' value='100000'>
 								 <input type='file' name='flz'>
 								 <input type='submit' name='envoyer' value='send' style='width:50px;'>
@@ -161,13 +138,11 @@
 						
 					</div></div>
 					";
-					
-				}
-			
-			public function getNewCrop()
-				{
+    }
 
-						return "
+    public function getNewCrop() {
+
+        return "
 						
 						<script>
 						
@@ -219,7 +194,7 @@
 									
 									<tr>
 										<td colspan='2'>
-											<p><span class='specButton' onclick='saveNewCrop();/* location.href=\"".($_SERVER['PHP_SELF'].'?'."entry=".$_REQUEST['entry'])."\";*/'><b>[ save ]</b></span> <span id='cComCrop' class='green'></span></p>
+											<p><span class='specButton' onclick='saveNewCrop();/* location.href=\"" . ($_SERVER['PHP_SELF'] . '?' . "entry=" . $_REQUEST['entry']) . "\";*/'><b>[ save ]</b></span> <span id='cComCrop' class='green'></span></p>
 										<td>
 									</tr>
 									
@@ -229,31 +204,29 @@
 						
 						</form></div>
 						";
-					
-				}
-				
-			public function getTemplatePane($pTemplate, $pType)
-				{
+    }
 
-						return "
+    public function getTemplatePane($pTemplate, $pType) {
+
+        return "
 						
-						<script>
-						
-							function getTemplateContent(item , templateName, nodeName)
-								{
-									new Ajax.Request('./main.php',
-	                                {
-	                                    method:'get',
-	                                    parameters:'qry=40&itemValue='+item+'&template=' + templateName + '&nodeName='+ nodeName,
-	                                    onSuccess: function(transport)
-	                                    {
-	                                    	var nfo = segment(transport.responseText) ;
-	                                    	$('cTextSubject').value = nfo[0] ;
-	                                        $('cTextContent').value = nfo[1] ;
-	                                    },
-	                                    onFailure: function(){ }
-	                                });
-								}
+                                        <script>
+
+                                        function getTemplateContent(item , templateName, nodeName)
+                                        {
+                                            new Ajax.Request('./main.php',
+                                            {
+                                                method:'get',
+                                                parameters:'qry=40&itemValue='+item+'&template=' + templateName + '&nodeName='+ nodeName,
+                                                onSuccess: function(transport)
+                                                {
+                                                    var nfo = segment(transport.responseText) ;
+                                                    $('cTextSubject').value = nfo[0] ;
+                                                    $('cTextContent').value = nfo[1] ;
+                                                },
+                                                onFailure: function(){ }
+                                            });
+					}
 						
 							function saveNewItemTemplate(pPageType)
 								{
@@ -309,11 +282,11 @@
 							<p/>
 							<div id=''>
 							
-								<a href='".$_SERVER['PHP_SELF']."?entry=".$_REQUEST['entry']."&template=".$_REQUEST['template']."&pageType=style'>[ style ]</a> 
-								<a href='".$_SERVER['PHP_SELF']."?entry=".$_REQUEST['entry']."&template=".$_REQUEST['template']."&pageType=script'>[ script ]</a>
-								<a href='".$_SERVER['PHP_SELF']."?entry=".$_REQUEST['entry']."&template=".$_REQUEST['template']."&pageType=page'>[ page ]</a>
-								<a href='".$_SERVER['PHP_SELF']."?entry=".$_REQUEST['entry']."&template=".$_REQUEST['template']."&pageType=token'>[ token ]</a>
-								<a href='".$_SERVER['PHP_SELF']."?entry=".$_REQUEST['entry']."&template=".$_REQUEST['template']."&pageType=content'>[ frameset ]</a>
+								<a href='" . $_SERVER['PHP_SELF'] . "?entry=" . $_REQUEST['entry'] . "&template=" . $_REQUEST['template'] . "&pageType=style'>[ style ]</a> 
+								<a href='" . $_SERVER['PHP_SELF'] . "?entry=" . $_REQUEST['entry'] . "&template=" . $_REQUEST['template'] . "&pageType=script'>[ script ]</a>
+								<a href='" . $_SERVER['PHP_SELF'] . "?entry=" . $_REQUEST['entry'] . "&template=" . $_REQUEST['template'] . "&pageType=page'>[ page ]</a>
+								<a href='" . $_SERVER['PHP_SELF'] . "?entry=" . $_REQUEST['entry'] . "&template=" . $_REQUEST['template'] . "&pageType=token'>[ token ]</a>
+								<a href='" . $_SERVER['PHP_SELF'] . "?entry=" . $_REQUEST['entry'] . "&template=" . $_REQUEST['template'] . "&pageType=content'>[ frameset ]</a>
 								
 							</div>
 							<p/>
@@ -323,15 +296,15 @@
 								
 									<tr>
 										<td width='50'>File</td>
-										<td width='500' id='cFile'>".$_REQUEST["template"]."</td>
+										<td width='500' id='cFile'>" . $_REQUEST["template"] . "</td>
 									</tr>
 
 									<tr>
 										
 										<td>Item</td>
 										<td>
-											<select class='encoder' id='cTemplateSelect' onchange='getTemplateContent(this.value,\"".$_REQUEST['template']."\",\"".$_REQUEST["pageType"]."\");'>
-												" . getTemplateOptions(isset($_REQUEST['pageType'])?$_REQUEST['pageType']:'script', $_REQUEST['template']) . "
+											<select class='encoder' id='cTemplateSelect' onchange='getTemplateContent(this.value,\"" . @$_REQUEST['template'] . "\",\"" . @$_REQUEST["pageType"] . "\");'>
+												" . getTemplateOptions(isset($_REQUEST['pageType']) ? @$_REQUEST['pageType'] : 'script', @$_REQUEST['template']) . "
 											</select>
 										</td>
 										
@@ -341,7 +314,7 @@
 									
 										<td colspan='2'>
 																			
-											<p>:: Template Item ::  <span class='specButton' onclick='saveTemplateItem(\"".$_REQUEST['pageType']."\")'>[ save</span> | <span class='specButton' onclick='saveNewItemTemplate(\"".$_REQUEST['pageType']."\");'>new ]</span>
+											<p>:: Template Item ::  <span class='specButton' onclick='saveTemplateItem(\"" . @$_REQUEST['pageType'] . "\")'>[ save</span> | <span class='specButton' onclick='saveNewItemTemplate(\"" . @$_REQUEST['pageType'] . "\");'>new ]</span>
 											
 											<span id='cComTemplate' class='green'></span>
 											
@@ -359,24 +332,23 @@
 						
 						</div>
 						";
-				}
-			
-			public function getCropPane($pCrop)
-				{
-					
-						$this->getFieldList("field",$pCrop) ;
-						
-						// set crop dropdownlist
-						
-						$lst = "<select>" ;$i=1;
-						foreach($this->data["list"] as $k=>$v)
-						{
-							$lst .= "<option value='".$i++."'></option>" ;
-						}
-						
-						$lst .= "</select>" ;
-						
-						return "
+    }
+
+    public function getCropPane($pCrop) {
+
+        $this->getFieldList("field", $pCrop);
+
+        // set crop dropdownlist
+
+        $lst = "<select>";
+        $i = 1;
+        foreach ($this->data["list"] as $k => $v) {
+            $lst .= "<option value='" . $i++ . "'></option>";
+        }
+
+        $lst .= "</select>";
+
+        return "
 						
 						<script>
 						
@@ -482,23 +454,23 @@
 								
 									<tr>
 										<td width='50'>Id</td>
-										<td width='500' id='cCropId'>".$_REQUEST["crop"]."</td>
+										<td width='500' id='cCropId'>" . $_REQUEST["crop"] . "</td>
 									</tr>
 									<tr>
 										<td>Topic</td>
-										<td><input class='encoder' id='cTopic' type='text' value='".@$this->data["list"]["topic"]."' /></td>
+										<td><input class='encoder' id='cTopic' type='text' value='" . @$this->data["list"]["topic"] . "' /></td>
 									</tr>
 									<tr>
 										<td>Scope</td>
-										<td><input class='encoder' id='cScope' type='text' value='".@$this->data["list"]["scope"]."'/></td>
+										<td><input class='encoder' id='cScope' type='text' value='" . @$this->data["list"]["scope"] . "'/></td>
 									</tr>
 									
 									<tr>
 										
 										<td>Item</td>
 										<td>
-											<select class='encoder' id='cCropSelect' onchange='getCropContent(this.value,\"".$_REQUEST['crop']."\");'>
-												".getCropOptions($_REQUEST['crop'])."
+											<select class='encoder' id='cCropSelect' onchange='getCropContent(this.value,\"" . $_REQUEST['crop'] . "\");'>
+												" . getCropOptions($_REQUEST['crop']) . "
 											</select>
 										</td>
 										
@@ -525,36 +497,32 @@
 						
 						</form></div>
 						";
-				}
+    }
 
-			public function getFieldList($pNodeName,$pCrop)
-				{
-					
-					$this->data["list"] = getNodeList($pNodeName,$pCrop) ;
-					
-				}
-				
-			public function getPagePane( )
-				{
-						return "<div class='bottomTool'><span onclick='showHide($(\"cPagePanel\"));collapse(this);' class='click'>[_]</span>
+    public function getFieldList($pNodeName, $pCrop) {
+
+        $this->data["list"] = getNodeList($pNodeName, $pCrop);
+    }
+
+    public function getPagePane() {
+        return "<div class='bottomTool'><span onclick='showHide($(\"cPagePanel\"));collapse(this);' class='click'>[_]</span>
 						<div id='cPagePanel'><p>:: Page Pane :: </p>
 						"
-							. getPagesPanel($_REQUEST["entry"]) .
-						"
+                . getPagesPanel($_REQUEST["entry"]) .
+                "
 						
 						</div>
 						</div>";
-				}
-				
-			public function getUserPane( )
-				{
-					
-					$dom = new DOMDocument() ;
-					$dom->load("./Owners/" . (@$_REQUEST["entry"]?$_REQUEST["entry"] : 'Dummy'). '/Contents/user.xml') ;
-					
-					$users = $dom->getElementsByTagName("users") ;
-					
-					$val = "
+    }
+
+    public function getUserPane() {
+
+        $dom = new DOMDocument();
+        $dom->load("./Owners/" . (@$_REQUEST["entry"] ? $_REQUEST["entry"] : 'Dummy') . '/Contents/user.xml');
+
+        $users = $dom->getElementsByTagName("users");
+
+        $val = "
 					
 					<script>
 					
@@ -583,7 +551,7 @@
 		                                    onSuccess: function(transport)
 		                                    {
 		                                        $('cComUser').innerHTML = transport.responseText ;
-												location.href='".($_SERVER['PHP_SELF'].'?'."entry=".$_REQUEST['entry'])."&user=1';
+												location.href='" . ($_SERVER['PHP_SELF'] . '?' . "entry=" . $_REQUEST['entry']) . "&user=1';
 		                                    },
 		                                    onFailure: function(){ }
 		                                });
@@ -617,7 +585,7 @@
                                     onSuccess: function(transport)
                                     {
                                         $('cComUser').innerHTML = transport.responseText ;
-										location.href='".($_SERVER['PHP_SELF'].'?'."entry=".$_REQUEST['entry'])."&user=1';
+										location.href='" . ($_SERVER['PHP_SELF'] . '?' . "entry=" . $_REQUEST['entry']) . "&user=1';
                                          $('new').innerHTML = '';
                                     },
                                     onFailure: function(){ }
@@ -640,42 +608,37 @@
 						<td>lastname</td>
 						<td>forename</td>
 						<td>customer</td>
-						</tr>" ;
-					
-					$i = 0;
-					foreach($users->item(0)->childNodes as $v)
-					{
-						if($v->nodeType != XML_TEXT_NODE)
-						{
-							if(isset($_SESSION['autho']['admin']))
-							{
-								$val .= "<tr>
-									<td onclick='userEdit(".$i.");'><b id='b".$i."' class='specButton'>[edit]</b></td><td id='login_".$i."'>" . trim($v->getAttribute("login")) . "</td><td id='pass_".$i."'>" . trim($v->getAttribute("pass")) . "</td><td id='lastname_".$i."'>" . trim($v->getAttribute("lastname")) . "</td><td id='forname_".$i."'>" . trim($v->getAttribute("forname")) . "</td><td id='customer_".$i."'>" . trim($v->getAttribute("customer")) ."</td>
-									</tr>" ;
-							}
-						}
-						$i++;
-					}
-					if(!isset($_SESSION['autho']['admin']))
-						$val .= "<tr><td colspan='5'>You're not authorized to modify the privileges</td></tr>";
-						
-					$val .= "</table>";
-					
-				return "<div class='bottomTool'>" . $val . "<hr /><div id='new'></div><span class='specButton' onclick='addUser();'>[add user]</span> <span id='cComUser' class='green'></span></div>";
-				}
-			
-			public function init()
-				{
-					$this->setFeed() ;
-					$this->tagReserved() ;
-					
-					$this->placePane() ;
-				}
-				
-		}
+						</tr>";
+
+        $i = 0;
+        foreach ($users->item(0)->childNodes as $v) {
+            if ($v->nodeType != XML_TEXT_NODE) {
+                if (isset($_SESSION['autho']['admin'])) {
+                    $val .= "<tr>
+									<td onclick='userEdit(" . $i . ");'><b id='b" . $i . "' class='specButton'>[edit]</b></td><td id='login_" . $i . "'>" . trim($v->getAttribute("login")) . "</td><td id='pass_" . $i . "'>" . trim($v->getAttribute("pass")) . "</td><td id='lastname_" . $i . "'>" . trim($v->getAttribute("lastname")) . "</td><td id='forname_" . $i . "'>" . trim($v->getAttribute("forname")) . "</td><td id='customer_" . $i . "'>" . trim($v->getAttribute("customer")) . "</td>
+									</tr>";
+                }
+            }
+            $i++;
+        }
+        if (!isset($_SESSION['autho']['admin']))
+            $val .= "<tr><td colspan='5'>You're not authorized to modify the privileges</td></tr>";
+
+        $val .= "</table>";
+
+        return "<div class='bottomTool'>" . $val . "<hr /><div id='new'></div><span class='specButton' onclick='addUser();'>[add user]</span> <span id='cComUser' class='green'></span></div>";
+    }
+
+    public function init() {
+        $this->setFeed();
+        $this->tagReserved();
+
+        $this->placePane();
+    }
+
+}
 
 # Ouput
-		
-		$_container["content"] = new contentPane() ;
 
+$_container["content"] = new contentPane();
 ?>

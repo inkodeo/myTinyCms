@@ -3,7 +3,7 @@
 
     <topic>root crop page</topic>
     <scope>main entry of the web site</scope>
-    <fields count="3">
+    <fields count="1">
         
         <field number="0" id="dummy">
             <subject/>
@@ -12,12 +12,9 @@
         
         <field number="1" id="rootEntry">
             <subject>rootEntry</subject>
-            <content>&lt;div id='data:1|2|contentEntry'&gt;&lt;/div&gt;</content>
+            <content>:: Data Entry ::</content>
         </field>
         
-    <field id="contentEntry" number="2"><subject>contentEntry</subject><content>// main entry
-</content></field>
-    
     </fields>
 
 </crop>

@@ -16,9 +16,9 @@
         </assert>
         
         <!--  -->
-        <content>
+
                 
-                <style id=""/>
+                <style id="" />
                 
                 <style id="standard">
                     
@@ -135,12 +135,15 @@
                     
                 </style>
                
-                <script id="prototype" number="">&lt;script src="./Cms/Objects/prototype.js"&gt;&lt;/script&gt;
-&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-var $j = jQuery.noConflict();
-&lt;/script&gt;
-&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"&gt;&lt;/script&gt;</script>
+                <script id="prototype" number="" >
+                    
+                    <![CDATA[
+                    
+                        <script src="./Cms/Objects/prototype.js"></script> 
+                    
+                    ]]>
+                    
+                </script>
                 
             <script id="editor" number="">
                 
@@ -607,7 +610,7 @@ var $j = jQuery.noConflict();
                 
             </script>
                 
-        </content>
+
         
     </header>
     
@@ -737,22 +740,22 @@ var $j = jQuery.noConflict();
                 
             </page>
             
-            <page id="lay_01"/>
-            <page id="lay_02"/>  
-            <page id="lay_03"/>
+            <page id="lay_01" />
+            <page id="lay_02" />  
+            <page id="lay_03" />
 
 <!-- 
 
 !.crop | !.item | !.page
 
-            -->
+-->
 
         </content>
         
     </main>
     
     <!-- PAGE CONTENT -->
-    <frameset id="frm_01">
+    <frameset>
         
         <assert>
             
@@ -771,7 +774,7 @@ var $j = jQuery.noConflict();
 
         </assert>
         
-        <content><!--  -->
+        <content id="frameset_001"><!--  -->
             
             <![CDATA[
             
@@ -820,19 +823,43 @@ var $j = jQuery.noConflict();
         
     </frameset>
     
-    <tokens id="token_01">
+    <tokens>
 	
-        <token id="xhtmlTransitional">&lt;!DOCTYPE html PUBLIC 
-            "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</token>
+		<token id="xhtmlTransitional">
 		
-        <token id="HTML4">&lt;!DOCTYPE HTML PUBLIC 
-            "-//W3C//DTD HTML 4.01 Transitional//EN" 
-            "http://www.w3.org/TR/html4/loose.dtd"&gt;</token>
+			<![CDATA[
+			
+				<!DOCTYPE html PUBLIC 
+					"-//W3C//DTD XHTML 1.0 Transitional//EN" 
+					"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+			
+			]]>
+		
+		</token>
+		
+        <token id="HTML4">
+            
+            <![CDATA[
+                 
+                    <!DOCTYPE HTML PUBLIC 
+                        "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                        "http://www.w3.org/TR/html4/loose.dtd">
+                 
+           ]]>
+           
+        </token>
         
-        <token id="xhtmlstrict">&lt;!DOCTYPE html PUBLIC
-            "-//W3C//DTD XHTML 1.0 Strict//EN" 
-            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</token>
+        <token id="xhtmlstrict">
+            
+            <![CDATA[
+                 
+                 <!DOCTYPE html PUBLIC
+                     "-//W3C//DTD XHTML 1.0 Strict//EN" 
+                     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                     
+           ]]>
+           
+        </token>
         
         <token id="xhtml_xmlns">
             
@@ -846,14 +873,8 @@ var $j = jQuery.noConflict();
         
     </tokens>
     
-	
-    <framesets/>
-    <pages/>
-    <styles/>
-    <scripts><script id="jquery">&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-var $j = jQuery.noConflict();
-&lt;/script&gt;
-&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"&gt;&lt;/script&gt;</script></scripts>
-	
+	<framesets />
+	<pages />
+	<styles />
+	<scripts />
 </template>

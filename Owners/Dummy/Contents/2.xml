@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<fields count="3"><topic>pgTest</topic><scope>pgTest test</scope><field id="2" number="1"><subject>pageTest</subject><content>this is the content of page test</content></field><field id="3" number="2"><subject>content</subject><content>
+
+content</content></field><field id="pageTest" number="3"><subject>pageTest</subject><content><![CDATA[
+this is the content of page test
+]]></content></field></fields>

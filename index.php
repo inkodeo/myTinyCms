@@ -1,7 +1,17 @@
 <?php
+
 @session_start();
-require_once "./config.inc.php" ;
+require_once "./config.inc.php";
 // check existance
-if(is_file(OWN.'/'.@$_REQUEST['entry'].'/Contents/1.xml')) $flg=true;if ( !@$_REQUEST['qry'] )
-	/*			 *   	if a distant request has not been done	 */	{		if($flg)			include_once FNT."/entry.inc.php" ;		else			header('Location:http://inkodeo.be/drupal/?entry=Dummy');	}else	{		require_once FUN."/common.inc.php" ;		include_once BCK."/responder.inc.php" ;	}
+if (is_file(OWN . '/' . @$_REQUEST['entry'] . '/Contents/1.xml'))
+    $flg = true;if (!@$_REQUEST['qry'])
+/* *   	if a distant request has not been done	 */ {
+    if ($flg)
+        include_once FNT . "/entry.inc.php";
+    else
+        header('Location:http://localhost:8080/myTinyCms/main.php?entry=Dummy');
+}else {
+    require_once FUN . "/common.inc.php";
+    include_once BCK . "/responder.inc.php";
+}
 ?>
